@@ -1,12 +1,13 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
-from pydantic import BaseModel
+from BUNK.routers import proompt
 
-class Prompt(BaseModel):
-    prompt: str
+def main():
+    load_dotenv()
+
+    app = FastAPI()
+    app.include_router(proompt.router, prefix="/chat", tags=["chat"])
 
 
-app = FastAPI()
-
-@app.get("/testReverse")
-async def root(prompt: Prompt):
-    return ({ "prompt": prompt.prompt, "reverse": prompt.prompt[::-1] })
+if __name__ == "__main__":
+    main()

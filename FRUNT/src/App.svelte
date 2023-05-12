@@ -1,9 +1,14 @@
 <script lang="ts">
     import Proompt from "./components/proompt.svelte";
-
-	export let name: string;
+	import { chat } from "./services/bunk";
+	import type Interaction from "./models/Interaction";
 
 	let promptResult: string;
+
+	const firePrompt = async (prompt: string) => {
+		const interaction: Interaction = await chat(prompt);
+		promptResult = interaction.response;
+	}
 </script>
 
 <main>
