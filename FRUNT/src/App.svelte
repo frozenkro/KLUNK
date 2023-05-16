@@ -16,7 +16,7 @@
 	<p>wow {promptResult || ''}</p>
 
 	<div class="prompt">
-		<Proompt firePrompt={(prompt) => promptResult = prompt} />
+		<Proompt firePrompt={firePrompt} />
 	</div>
 	
 </main>

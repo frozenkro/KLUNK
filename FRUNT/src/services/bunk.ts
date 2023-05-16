@@ -6,7 +6,7 @@ export const chat = async (proompt: string, conversationContext?: string) => {
         conversationContext: conversationContext
     } 
 
-    const res = await fetch('/chat', {
+    const res = await fetch('http://localhost:8000/chat', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

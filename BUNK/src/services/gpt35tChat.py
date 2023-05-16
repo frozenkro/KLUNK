@@ -5,7 +5,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper
-from ..models.Interaction import Interaction
+from models.Interaction import Interaction
 
 def chat(interaction: Interaction):
     llm = OpenAI(temperature=1)
