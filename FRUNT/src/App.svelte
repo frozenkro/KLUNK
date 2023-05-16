@@ -13,7 +13,7 @@
 
 <main>
 	<h1>its KLUNK!</h1>
-	<p>wow {promptResult || ''}</p>
+	<p>{promptResult || ''}</p>
 
 	<div class="prompt">
 		<Proompt firePrompt={firePrompt} />
