@@ -6,6 +6,7 @@ from langchain.chains import LLMChain, SequentialChain
 from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper
 from models.Interaction import Interaction
+from models.Message import Message, MessageType
 
 def chat(interaction: Interaction):
     llm = OpenAI(temperature=1)
@@ -22,5 +23,6 @@ def chat(interaction: Interaction):
 
     waifu_chain = LLMChain(llm=llm, prompt=waifu_template, output_key='response', memory=waifu_memory)
     
-    interaction.response = waifu_chain.run({'proompt': interaction.proompt})
+    reply = waifu_chain.run({'proompt': interaction.proompt.content})
+    interaction.response = Message(content=reply, type=MessageType.BOT, conversationContext=interaction.proompt.conversationContext)
     return interaction

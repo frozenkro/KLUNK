@@ -1,6 +1,7 @@
 from pydantic import BaseModel
+from .Message import Message
 
 class Interaction(BaseModel):
-    proompt: str
-    response: str | None = None
+    proompt: Message
+    response: Message | None = None
     conversationContext: str | None = None

@@ -1,19 +1,41 @@
 <script lang="ts">
     import Proompt from "./components/proompt.svelte";
-	import { chat } from "./services/bunk";
-	import type Interaction from "./models/Interaction";
+	import { ChatService } from "./BUNK/services/ChatService";
+	import type { Interaction } from "./BUNK/models/Interaction";
+	import type { Message } from "./BUNK/models/Message";
+	import { MessageType } from "./BUNK/models/MessageType";
+    import Conversation from "./components/conversation.svelte";
+    import { onMount } from "svelte";
 
-	let promptResult: string;
+	let messages: Message[]; 
+
+	onMount(() => {
+		messages = [];
+	})
 
 	const firePrompt = async (prompt: string) => {
-		const interaction: Interaction = await chat(prompt);
-		promptResult = interaction.response;
+		const message: Message = {
+			type: MessageType.USER,
+			content: prompt,
+			timestamp: new Date().toISOString()
+		}
+		messages = [...messages, message];
+
+		let interaction: Interaction = {
+			proompt: message
+		}
+		interaction = await ChatService.proomptChatPost(interaction);
+		const response = interaction.response;
+		response.type = MessageType.BOT;
+		response.timestamp = new Date().toISOString();
+		messages = [...messages, interaction.response];
 	}
 </script>
 
 <main>
 	<h1>its KLUNK!</h1>
-	<p>{promptResult || ''}</p>
+
+	<Conversation messages={messages} />
 
 	<div class="prompt">
 		<Proompt firePrompt={firePrompt} />

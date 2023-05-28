@@ -1,6 +1,10 @@
 {
   "extends": "./node_modules/@tsconfig/svelte/tsconfig.json",
-
   "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+  "compilerOptions": {
+    "target": "es2018",
+    "sourceMap": true,
+    "sourceRoot": "/src"
+  }
 }
