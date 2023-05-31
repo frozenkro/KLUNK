@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers.proompt import router as proomptRouter
+from .routers.proompt import router as proomptRouter
 
 load_dotenv()
 

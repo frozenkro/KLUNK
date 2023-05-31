@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from models.Interaction import Interaction
-from services.gpt35tChat import chat
+from ..models.Interaction import Interaction
+from ..services.gpt35tChat import chat
 
 router = APIRouter()
 

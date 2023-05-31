@@ -1,0 +1,9 @@
+Built with python 3.11.3
+
+I highly recommend using a venv for this or any other python project. First `cd BUNK` if you aren't in there already, then create a venv with `python -m venv .venv`. To activate the environment, run `./.venv/scripts/activate`. 
+
+With the venv active, run `pip install -r requirements.txt` to install all of the dependencies. 
+
+If you run into a C++ error with the chromadb install, just install the latest C++ distributable from the Visual Studio Installer. In my case, I had to install/modify "Visual Studio Build Tools 2022", navigate to "Individual Components" tab and check the box for "MSVC v143 - VS 2022 C++ x64/x86 build tools (Latest)", then I had to restart my machine.
+
+To run the FastAPI server from the project root, just run `uvicorn BUNK.src.main:app`. You can also `cd BUNK` and run `uvicorn src.main:app`. However, you will run into import errors if you `cd BUNK/src/` and run `uvicorn main:app`, like how a normal person might run it. It does work from the source dir if you get rid of all the relative imports in the project and just import modules by name, but then you can only run it from the src directory, which breaks the vscode debug config. Python is a lawless mess, this is worse than javascript.
